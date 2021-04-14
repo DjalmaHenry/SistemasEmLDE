@@ -16,7 +16,6 @@ public class LDE<T extends Comparable<T>> {
 
     public void inserirValorFinal(T valor) {
         LDENode<T> novo;
-        boolean achou;
         novo = new LDENode(valor);
         if (isEmpty()) { // lista está vazia
             prim = novo;
@@ -28,6 +27,19 @@ public class LDE<T extends Comparable<T>> {
             ult = novo;
             qtd++;
             System.out.println("Inserção efetuada com sucesso!");
+        }
+    }
+    
+    public void exibirValores() {
+        LDENode<T> aux;
+        if (isEmpty()) {
+            System.out.println("Lista vazia!!");
+        } else {
+            aux = prim;
+            while (aux != null) {
+                System.out.println(aux.getInfo());
+                aux = aux.getProx();
+            }
         }
     }
 }
