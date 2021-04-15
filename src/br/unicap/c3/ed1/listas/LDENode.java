@@ -6,7 +6,6 @@ class LDENode<T extends Comparable<T>> { // esta classe tem visibilidade de paco
     private T info;
     private LDENode<T> ant;
     private LDENode<T> prox;
-    
 
     LDENode(T valor) {
         info = valor;
@@ -19,11 +18,11 @@ class LDENode<T extends Comparable<T>> { // esta classe tem visibilidade de paco
     T getInfo() {
         return info;
     }
-    
+
     void setAnt(LDENode<T> novoAnt) {
         ant = novoAnt;
     }
-    
+
     LDENode<T> getAnt() {
         return ant;
     }
@@ -31,7 +30,7 @@ class LDENode<T extends Comparable<T>> { // esta classe tem visibilidade de paco
     void setProx(LDENode<T> novoProx) {
         prox = novoProx;
     }
-    
+
     LDENode<T> getProx() {
         return prox;
     }
