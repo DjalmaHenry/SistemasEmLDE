@@ -1,4 +1,4 @@
-// Classe Agenda
+// Classe Cadastro
 package aplicacao;
 
 import br.unicap.c3.ed1.listas.LDESemRepetidos;

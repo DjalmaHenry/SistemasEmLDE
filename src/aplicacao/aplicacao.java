@@ -4,7 +4,7 @@ package aplicacao;
 import java.util.Scanner;
 import br.unicap.c3.ed1.listas.LDE;
 
-public class aplicacao {
+public class Aplicacao {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
