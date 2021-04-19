@@ -8,32 +8,36 @@ public class aplicacao {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        LDE<Integer> listaInt = new LDE();
-        int op, num;
+        Cadastro cadastro = new Cadastro();
+        int op;
+        String rg;
         do {
             menu();
             op = in.nextInt();
             switch (op) {
                 case 1:
-                    System.out.println("Informe um número inteiro:");
+                    System.out.println("Informe o RG:");
                     System.out.print("-> ");
-                    num = in.nextInt();
-                    listaInt.inserirValorInicio(num);
+                    rg = in.next();
+                    in.nextLine();
+                    cadastro.cadastraPessoa(rg);
                     break;
                 case 2:
-                    System.out.println("Informe um número inteiro:");
-                    System.out.print("-> ");
-                    num = in.nextInt();
-                    listaInt.inserirValorFinal(num);
+                    cadastro.exibirCadastro();
                     break;
                 case 3:
-                    listaInt.RemValorInicio();
+                    System.out.println("Informe o RG:");
+                    System.out.print("-> ");
+                    rg = in.next();
+                    in.nextLine();
+                    cadastro.verificaPessoa(rg);
                     break;
                 case 4:
-                    listaInt.RemValorFinal();
-                    break;
-                case 5:
-                    listaInt.exibirValores();
+                    System.out.println("Informe o RG:");
+                    System.out.print("-> ");
+                    rg = in.next();
+                    in.nextLine();
+                    cadastro.removePessoa(rg);
                     break;
                 case 0:
                     System.out.println("Adeus!");
@@ -44,11 +48,10 @@ public class aplicacao {
 
     public static void menu() {
         System.out.println("MENU:");
-        System.out.println("1 - Inserir novo valor no início da lista.");
-        System.out.println("2 - Inserir novo valor no final da lista.");
-        System.out.println("3 - Remover o primeiro elemento da lista.");
-        System.out.println("4 - Remover o último elemento da lista.");
-        System.out.println("5 - Exibir a lista.");
+        System.out.println("1 - Cadastrar uma pessoa.");
+        System.out.println("2 - Exibir todas pessoas cadastradas.");
+        System.out.println("3 - Verificar se uma pessoa está no prédio.");
+        System.out.println("4 - Remover cadastro de uma pessoa.");
         System.out.println("0 - Sair do programa.");
         System.out.println("Informe a opção desejada:");
         System.out.print("-> ");
