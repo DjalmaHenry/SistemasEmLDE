@@ -91,15 +91,19 @@ public class LDESemRepetidos<T extends Comparable<T>> {
         LDENode<T> aux;
         if (isEmpty()) { // lista está vazia
             System.err.println("Erro, lista vazia.");
-        } else {
-            aux = buscaProd(valor);
-            if (aux == null) {
-                System.err.println("Erro, valor não encontrado!");
-            } else if (qtd == 1) {
+        } else if (qtd == 1) {
+            if (valor.compareTo(prim.getInfo()) == 0) {
                 prim = null;
                 ult = null;
                 qtd--;
                 System.out.println("Remoção efetuada com sucesso!");
+            } else {
+                System.err.println("Erro, valor não encontrado!");
+            }
+        } else {
+            aux = buscaProd(valor);
+            if (aux == null) {
+                System.err.println("Erro, valor não encontrado!");
             } else if (prim == aux) {
                 prim = prim.getProx();
                 prim.setAnt(null);
