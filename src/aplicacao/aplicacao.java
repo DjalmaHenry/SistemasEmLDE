@@ -33,6 +33,9 @@ public class Aplicacao {
                     cadastro.verificaPessoa(rg);
                     break;
                 case 4:
+                    cadastro.verificaPredio();
+                    break;
+                case 5:
                     System.out.println("Informe o RG:");
                     System.out.print("-> ");
                     rg = in.next();
@@ -51,7 +54,8 @@ public class Aplicacao {
         System.out.println("1 - Cadastrar uma pessoa.");
         System.out.println("2 - Exibir todas pessoas cadastradas.");
         System.out.println("3 - Verificar se uma pessoa está no prédio.");
-        System.out.println("4 - Remover cadastro de uma pessoa.");
+        System.out.println("4 - Verificar quantas pessoas estão no prédio.");
+        System.out.println("5 - Remover cadastro de uma pessoa.");
         System.out.println("0 - Sair do programa.");
         System.out.println("Informe a opção desejada:");
         System.out.print("-> ");

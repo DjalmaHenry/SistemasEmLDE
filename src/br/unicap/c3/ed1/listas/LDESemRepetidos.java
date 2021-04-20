@@ -15,6 +15,10 @@ public class LDESemRepetidos<T extends Comparable<T>> {
         }
     }
 
+    public int getQtd() {
+        return qtd;
+    }
+
     public boolean buscaNum(T valor) { // Busca sequencial simples
         LDENode<T> aux;
         if (qtd == 0) { // lista vazia

@@ -68,6 +68,15 @@ public class Cadastro {
         }
     }
 
+    public void verificaPredio() {
+        int cont = pessoas.getQtd();
+        if (pessoas.isEmpty()) {
+            System.out.println("O prédio está vazio!");
+        } else {
+            System.out.println("Existem " + pessoas.getQtd() + " pessoa(s) no prédio!");
+        }
+    }
+
     public void removePessoa(String rg) {
         Pessoa pessoa = new Pessoa(rg);
         pessoas.remover(pessoa);
