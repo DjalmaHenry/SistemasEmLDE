@@ -42,8 +42,17 @@ public class Aplicacao {
                     in.nextLine();
                     cadastro.removePessoa(rg);
                     break;
+                case 6:
+                    cadastro.ordenaCrescente();
+                    break;
+                case 7:
+                    cadastro.ordenaDecrescente();
+                    break;
                 case 0:
                     System.out.println("Adeus!");
+                    break;
+                default:
+                    System.err.println("Erro, opção inválida!");
                     break;
             }
         } while (op != 0);
@@ -56,6 +65,8 @@ public class Aplicacao {
         System.out.println("3 - Verificar se uma pessoa está no prédio.");
         System.out.println("4 - Verificar quantas pessoas estão no prédio.");
         System.out.println("5 - Remover cadastro de uma pessoa.");
+        System.out.println("6 - Ordenar lista de pessoas em crescente.");
+        System.out.println("7 - Ordenar lista de pessoas em decrescente.");
         System.out.println("0 - Sair do programa.");
         System.out.println("Informe a opção desejada:");
         System.out.print("-> ");

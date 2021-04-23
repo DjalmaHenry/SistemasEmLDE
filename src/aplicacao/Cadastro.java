@@ -81,4 +81,12 @@ public class Cadastro {
         Pessoa pessoa = new Pessoa(rg);
         pessoas.remover(pessoa);
     }
+
+    public void ordenaCrescente() {
+        pessoas = pessoas.ordenar();
+    }
+    
+    public void ordenaDecrescente() {
+        pessoas = pessoas.ordenarDecrescente();
+    }
 }
