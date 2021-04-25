@@ -1,7 +1,7 @@
 // Classe Pessoa
 package aplicacao;
 
-import br.unicap.c3.ed1.listas.LDESemRepetidos;
+import br.unicap.c3.ed1.listas.LDESemRepetidosOrdenado;
 
 public class Pessoa implements Comparable<Pessoa> {
 

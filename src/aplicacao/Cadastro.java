@@ -1,15 +1,15 @@
 // Classe Cadastro
 package aplicacao;
 
-import br.unicap.c3.ed1.listas.LDESemRepetidos;
+import br.unicap.c3.ed1.listas.LDESemRepetidosOrdenado;
 import java.util.Scanner;
 
 public class Cadastro {
 
-    private LDESemRepetidos<Pessoa> pessoas;
+    private LDESemRepetidosOrdenado<Pessoa> pessoas;
 
     public Cadastro() {
-        pessoas = new LDESemRepetidos();
+        pessoas = new LDESemRepetidosOrdenado();
     }
 
     public void cadastraPessoa(String rg) {

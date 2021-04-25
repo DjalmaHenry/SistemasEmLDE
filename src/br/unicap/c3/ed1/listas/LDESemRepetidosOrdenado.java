@@ -1,7 +1,7 @@
 // Classe LDESemRepetidos
 package br.unicap.c3.ed1.listas;
 
-public class LDESemRepetidos<T extends Comparable<T>> {
+public class LDESemRepetidosOrdenado<T extends Comparable<T>> {
 
     private LDENode<T> prim;
     private LDENode<T> ult;
