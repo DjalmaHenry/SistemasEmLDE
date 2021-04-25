@@ -15,74 +15,59 @@ public class LDESemRepetidos<T extends Comparable<T>> {
         }
     }
 
-    public int getQtd() {
-        return qtd;
-    }
-
-    public boolean buscaNum(T valor) { // Busca sequencial simples
+    private LDENode<T> buscaProd(T p) { // Busca sequencial simples
         LDENode<T> aux;
-        if (qtd == 0) { // lista vazia
-            return false;
+        if (isEmpty()) { // lista vazia
+            return null;
         } else {
             aux = prim;
             while (aux != null) {
-                if (aux.getInfo().compareTo(valor) == 0) {
-                    return true;
-                } else {
-                    aux = aux.getProx();
+                if (aux.getInfo().compareTo(p) == 0) {
+                    return aux;
                 }
+                aux = aux.getProx();
             }
-            return false;
+            return null;
         }
     }
 
-    public void inserirValorFinal(T valor) {
+    public void inserirOrdenadoDecrescente(T valor) { // método de inserção ordenada
         LDENode<T> novo = new LDENode(valor);
-        boolean achou;
-        if (isEmpty()) { // lista está vazia
+        LDENode<T> atual;
+        if (isEmpty()) { // inserir na lista vazia
             prim = novo;
             ult = novo;
+            qtd = 1;
+            System.out.println("Valor inserido com sucesso!");
+        } else if (novo.getInfo().compareTo(prim.getInfo()) > 0) { // inserir no início da lista
+            novo.setProx(prim);
+            prim.setAnt(novo);
+            prim = novo;
             qtd++;
-            System.out.println("Inserção efetuada com sucesso!");
-        } else { // lista não está vazia
-            achou = this.buscaNum(valor);
-            if (achou) { // achou!
-                System.out.println("Valor repetido! Inserção não efetuada!");
-            } else {  // não achou!!!
-                novo.setAnt(ult);
-                ult.setProx(novo);
-                ult = novo;
-                qtd++;
-                System.out.println("Inserção efetuada com sucesso!");
-            }
-        }
-    }
-
-    public void remValorFinal() {
-        if (isEmpty()) { // lista está vazia
-            System.err.println("Erro, lista vázia.");
-        } else if (qtd == 1) {
-            prim = null;
-            ult = null;
-            qtd--;
-            System.out.println("Remoção efetuada com sucesso!");
-        } else { // lista não está vazia
-            ult = ult.getAnt();
-            ult.setProx(null);
-            qtd--;
-            System.out.println("Remoção efetuada com sucesso!");
-        }
-    }
-
-    public void exibirValores() {
-        LDENode<T> aux;
-        if (isEmpty()) {
-            System.err.println("Erro, Lista vazia.");
-        } else {
-            aux = prim;
-            while (aux != null) {
-                System.out.println(aux.getInfo());
-                aux = aux.getProx();
+            System.out.println("Valor inserido com sucesso!");
+        } else if (novo.getInfo().compareTo(ult.getInfo()) < 0) { // inserir no final da lista
+            ult.setProx(novo);
+            novo.setAnt(ult);
+            ult = novo;
+            qtd++;
+            System.out.println("Valor inserido com sucesso!");
+        } else { // inserção no meio da lista
+            atual = prim;
+            while (atual != null) {
+                if (novo.getInfo().compareTo(atual.getInfo()) == 0) {
+                    System.err.println("Erro, valor repetido!");
+                    return;
+                } else if (novo.getInfo().compareTo(atual.getInfo()) > 0) { // inserir
+                    atual.getAnt().setProx(novo);
+                    novo.setAnt(atual.getAnt());
+                    novo.setProx(atual);
+                    atual.setAnt(novo);
+                    qtd++;
+                    System.out.println("Valor inserido com sucesso!");
+                    return;
+                } else {
+                    atual = atual.getProx();
+                }
             }
         }
     }
@@ -123,125 +108,43 @@ public class LDESemRepetidos<T extends Comparable<T>> {
         }
     }
 
-    private LDENode<T> buscaProd(T p) { // Busca sequencial simples
+    public void exibirValoresCrescente() {
         LDENode<T> aux;
-        if (isEmpty()) { // lista vazia
-            return null;
+        if (isEmpty()) {
+            System.err.println("Erro, Lista vazia.");
+        } else {
+            aux = ult;
+            while (aux != null) {
+                System.out.println(aux.getInfo());
+                aux = aux.getAnt();
+            }
+        }
+    }
+
+    public void exibirValoresDecrescente() {
+        LDENode<T> aux;
+        if (isEmpty()) {
+            System.err.println("Erro, Lista vazia.");
         } else {
             aux = prim;
             while (aux != null) {
-                if (aux.getInfo().compareTo(p) == 0) {
-                    return aux;
-                }
+                System.out.println(aux.getInfo());
                 aux = aux.getProx();
             }
-            return null;
         }
     }
 
-    public void RemValorInicio() {
-        if (isEmpty()) { // lista está vazia
-            System.err.println("Erro, lista vázia.");
-        } else if (qtd == 1) {
-            prim = null;
-            ult = null;
-            qtd--;
-        } else { // lista não está vazia
-            prim = prim.getProx();
-            prim.setAnt(null);
-            qtd--;
-        }
-    }
-
-    public void inserirOrdenado(T valor) { // método de inserção ordenada
-        LDENode<T> novo = new LDENode(valor);
-        LDENode<T> atual;
-        if (isEmpty()) { // inserir na lista vazia
-            prim = novo;
-            ult = novo;
-            qtd = 1;
-        } else if (novo.getInfo().compareTo(prim.getInfo()) < 0) { // inserir no início da lista
-            novo.setProx(prim);
-            prim.setAnt(novo);
-            prim = novo;
-            qtd++;
-        } else if (novo.getInfo().compareTo(ult.getInfo()) > 0) { // inserir no final da lista
-            ult.setProx(novo);
-            novo.setAnt(ult);
-            ult = novo;
-            qtd++;
-        } else { // inserção no meio da lista
-            atual = prim;
-            while (atual != null) {
-                if (novo.getInfo().compareTo(atual.getInfo()) < 0) { // inserir
-                    atual.getAnt().setProx(novo);
-                    novo.setAnt(atual.getAnt());
-                    novo.setProx(atual);
-                    atual.setAnt(novo);
-                    qtd++;
-                    return;
-                } else {
-                    atual = atual.getProx();
-                }
+    public void exibirValor(T p) {
+        LDENode<T> aux;
+        if (qtd == 0) {
+            System.out.println("Lista vazia!!");
+        } else {
+            aux = buscaProd(p);
+            if (aux == null) {
+                System.err.println("Valor não cadastrado!");
+            } else {
+                System.out.println(aux.getInfo());
             }
         }
-    }
-
-    public void inserirOrdenadoDecrescente(T valor) { // método de inserção ordenada
-        LDENode<T> novo = new LDENode(valor);
-        LDENode<T> atual;
-        if (isEmpty()) { // inserir na lista vazia
-            prim = novo;
-            ult = novo;
-            qtd = 1;
-        } else if (novo.getInfo().compareTo(prim.getInfo()) > 0) { // inserir no início da lista
-            novo.setProx(prim);
-            prim.setAnt(novo);
-            prim = novo;
-            qtd++;
-        } else if (novo.getInfo().compareTo(ult.getInfo()) < 0) { // inserir no final da lista
-            ult.setProx(novo);
-            novo.setAnt(ult);
-            ult = novo;
-            qtd++;
-        } else { // inserção no meio da lista
-            atual = prim;
-            while (atual != null) {
-                if (novo.getInfo().compareTo(atual.getInfo()) > 0) { // inserir
-                    atual.getAnt().setProx(novo);
-                    novo.setAnt(atual.getAnt());
-                    novo.setProx(atual);
-                    atual.setAnt(novo);
-                    qtd++;
-                    return;
-                } else {
-                    atual = atual.getProx();
-                }
-            }
-        }
-    }
-
-    public LDESemRepetidos<T> ordenar() {
-        LDESemRepetidos<T> novaLista = new LDESemRepetidos();
-        LDENode<T> aux;
-        while (!this.isEmpty()) {
-            aux = prim;
-            this.RemValorInicio();
-            novaLista.inserirOrdenado(aux.getInfo());
-        }
-        System.out.println("Lista Ordenada com sucesso!");
-        return novaLista;
-    }
-
-    public LDESemRepetidos<T> ordenarDecrescente() {
-        LDESemRepetidos<T> novaLista = new LDESemRepetidos();
-        LDENode<T> aux;
-        while (!this.isEmpty()) {
-            aux = prim;
-            this.RemValorInicio();
-            novaLista.inserirOrdenadoDecrescente(aux.getInfo());
-        }
-        System.out.println("Lista Ordenada com sucesso!");
-        return novaLista;
     }
 }

@@ -2,7 +2,6 @@
 package aplicacao;
 
 import java.util.Scanner;
-import br.unicap.c3.ed1.listas.LDE;
 
 public class Aplicacao {
 
@@ -23,30 +22,24 @@ public class Aplicacao {
                     cadastro.cadastraPessoa(rg);
                     break;
                 case 2:
-                    cadastro.exibirCadastro();
-                    break;
-                case 3:
-                    System.out.println("Informe o RG:");
-                    System.out.print("-> ");
-                    rg = in.next();
-                    in.nextLine();
-                    cadastro.verificaPessoa(rg);
-                    break;
-                case 4:
-                    cadastro.verificaPredio();
-                    break;
-                case 5:
                     System.out.println("Informe o RG:");
                     System.out.print("-> ");
                     rg = in.next();
                     in.nextLine();
                     cadastro.removePessoa(rg);
                     break;
-                case 6:
-                    cadastro.ordenaCrescente();
+                case 3:
+                    cadastro.exibirCadastroCrescente();
                     break;
-                case 7:
-                    cadastro.ordenaDecrescente();
+                case 4:
+                    cadastro.exibirCadastroDecrescente();
+                    break;
+                case 5:
+                    System.out.println("Informe o RG:");
+                    System.out.print("-> ");
+                    rg = in.next();
+                    in.nextLine();
+                    cadastro.exibirPessoa(rg);
                     break;
                 case 0:
                     System.out.println("Adeus!");
@@ -61,12 +54,10 @@ public class Aplicacao {
     public static void menu() {
         System.out.println("MENU:");
         System.out.println("1 - Cadastrar uma pessoa.");
-        System.out.println("2 - Exibir todas pessoas cadastradas.");
-        System.out.println("3 - Verificar se uma pessoa está no prédio.");
-        System.out.println("4 - Verificar quantas pessoas estão no prédio.");
-        System.out.println("5 - Remover cadastro de uma pessoa.");
-        System.out.println("6 - Ordenar lista de pessoas em crescente.");
-        System.out.println("7 - Ordenar lista de pessoas em decrescente.");
+        System.out.println("2 - Remover uma pessoa.");
+        System.out.println("3 - Exibir cadastro em ordem crescente.");
+        System.out.println("4 - Exibir cadastro em ordem decrescente.");
+        System.out.println("5 - Exibir informações de uma pessoa.");
         System.out.println("0 - Sair do programa.");
         System.out.println("Informe a opção desejada:");
         System.out.print("-> ");
