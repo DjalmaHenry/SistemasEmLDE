@@ -15,15 +15,21 @@ public class LDESemRepetidosOrdenado<T extends Comparable<T>> {
         }
     }
 
-    private LDENode<T> buscaProd(T p) { // Busca sequencial simples
+    private LDENode<T> busca(T valor) { // Busca melhorada para lista ordenada DECRESCENTE
         LDENode<T> aux;
         if (isEmpty()) { // lista vazia
+            return null;
+        } else if (valor.compareTo(prim.getInfo()) > 0) {
+            return null;
+        } else if (valor.compareTo(ult.getInfo()) < 0) {
             return null;
         } else {
             aux = prim;
             while (aux != null) {
-                if (aux.getInfo().compareTo(p) == 0) {
+                if (valor.compareTo(aux.getInfo()) == 0) {
                     return aux;
+                } else if (valor.compareTo(aux.getInfo()) > 0) {
+                    return null;
                 }
                 aux = aux.getProx();
             }
@@ -86,7 +92,7 @@ public class LDESemRepetidosOrdenado<T extends Comparable<T>> {
                 System.err.println("Erro, valor não encontrado!");
             }
         } else {
-            aux = buscaProd(valor);
+            aux = busca(valor);
             if (aux == null) {
                 System.err.println("Erro, valor não encontrado!");
             } else if (prim == aux) {
@@ -139,7 +145,7 @@ public class LDESemRepetidosOrdenado<T extends Comparable<T>> {
         if (qtd == 0) {
             System.out.println("Lista vazia!!");
         } else {
-            aux = buscaProd(p);
+            aux = busca(p);
             if (aux == null) {
                 System.err.println("Valor não cadastrado!");
             } else {
