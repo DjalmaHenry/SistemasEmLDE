@@ -22,7 +22,7 @@ public class Cadastro {
         nome = in.next();
         in.nextLine();
         Pessoa pessoa = new Pessoa(nome, rg);
-        pessoas.inserirOrdenadoDecrescente(pessoa);
+        pessoas.inserirOrdenado(pessoa);
     }
 
     public void exibirCadastroCrescente() {
