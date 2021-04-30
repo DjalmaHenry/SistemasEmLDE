@@ -36,48 +36,8 @@ public class LDESemRepetidosOrdenado<T extends Comparable<T>> {
             return null;
         }
     }
-    
-    public void inserirOrdenado(T valor) {
-        LDENode<T> novo = new LDENode(valor);
-        LDENode<T> atual, anterior;
-        if (isEmpty() == true) {
-            prim = novo;
-            ult = novo;
-            qtd = 1;
-        } else if (valor.compareTo(prim.getInfo()) <= 0) {
-            prim.setAnt(novo);
-            novo.setProx(prim);
-            prim = novo;
-            qtd++;
-        } else if (valor.compareTo(ult.getInfo()) > 0) {
-            ult.setProx(novo);
-            novo.setAnt(ult);
-            ult = novo;
-            qtd++;
-        } else if (valor.compareTo(ult.getInfo()) == 0) {
-            ult.getAnt().setProx(novo);
-            novo.setAnt(ult.getAnt());
-            ult.setAnt(novo);
-            novo.setProx(ult);
-            qtd++;
-        } else {
-            atual = prim.getProx();
-            while (atual != null) {
-                if (atual.getInfo().compareTo(novo.getInfo()) >= 0) {
-                    anterior = atual.getAnt();
-                    anterior.setProx(novo);
-                    novo.setAnt(anterior);
-                    novo.setProx(atual);
-                    atual.setAnt(novo);
-                    qtd++;
-                } else {
-                    atual = atual.getProx();
-                }
-            }
-        }
-    }
 
-    public void inserirOrdenadoA(T valor) { // método de inserção ordenada crescente com repetidos
+    public void inserirOrdenado(T valor) { // método de inserção ordenada crescente com repetidos
         LDENode<T> novo = new LDENode(valor);
         LDENode<T> atual;
         if (isEmpty()) { // inserir na lista vazia
