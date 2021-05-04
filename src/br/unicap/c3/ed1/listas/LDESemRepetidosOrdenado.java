@@ -54,13 +54,6 @@ public class LDESemRepetidosOrdenado<T extends Comparable<T>> {
             novo.setAnt(ult);
             ult = novo;
             qtd++;
-        } else if (novo.getInfo().compareTo(ult.getInfo()) == 0) {
-            ult.getAnt().setProx(novo);
-            novo.setAnt(ult.getAnt());
-            ult.setAnt(novo);
-            novo.setProx(ult);
-            ult = novo;
-            qtd++;
         } else { // inserção no meio da lista
             atual = prim;
             while (atual != null) {
