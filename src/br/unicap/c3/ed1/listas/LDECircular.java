@@ -21,12 +21,16 @@ public class LDECircular<T extends Comparable<T>> {
         if (isEmpty()) { // lista está vazia
             prim = novo;
             ult = novo;
+            ult.setProx(prim);
+            prim.setAnt(ult);
             qtd++;
             System.out.println("Inserção efetuada com sucesso!");
         } else { // lista não está vazia
             prim.setAnt(novo);
             novo.setProx(prim);
             prim = novo;
+            ult.setProx(prim);
+            prim.setAnt(ult);
             qtd++;
             System.out.println("Inserção efetuada com sucesso!");
         }
@@ -38,12 +42,16 @@ public class LDECircular<T extends Comparable<T>> {
         if (isEmpty()) { // lista está vazia
             prim = novo;
             ult = novo;
+            ult.setProx(prim);
+            prim.setAnt(ult);
             qtd++;
             System.out.println("Inserção efetuada com sucesso!");
         } else { // lista não está vazia
             novo.setAnt(ult);
             ult.setProx(novo);
             ult = novo;
+            ult.setProx(prim);
+            prim.setAnt(ult);
             qtd++;
             System.out.println("Inserção efetuada com sucesso!");
         }
@@ -59,7 +67,7 @@ public class LDECircular<T extends Comparable<T>> {
             System.out.println("Remoção efetuada com sucesso!");
         } else { // lista não está vazia
             prim = prim.getProx();
-            prim.setAnt(null);
+            prim.setAnt(ult);
             qtd--;
             System.out.println("Remoção efetuada com sucesso!");
         }
@@ -75,7 +83,7 @@ public class LDECircular<T extends Comparable<T>> {
             System.out.println("Remoção efetuada com sucesso!");
         } else { // lista não está vazia
             ult = ult.getAnt();
-            ult.setProx(null);
+            ult.setProx(prim);
             qtd--;
             System.out.println("Remoção efetuada com sucesso!");
         }
@@ -87,7 +95,7 @@ public class LDECircular<T extends Comparable<T>> {
             System.out.println("Lista vazia!!");
         } else {
             aux = prim;
-            while (aux != null) {
+            for (int i = 0; i != qtd; i++) {
                 System.out.println(aux.getInfo());
                 aux = aux.getProx();
             }
