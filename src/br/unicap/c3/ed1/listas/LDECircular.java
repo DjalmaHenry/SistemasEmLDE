@@ -101,4 +101,62 @@ public class LDECircular<T extends Comparable<T>> {
             }
         }
     }
+
+    public void concatenar(LDECircular L2) {
+        if (L2.isEmpty()) {
+            System.err.println("Erro, a segunda lista está vazia!!");
+        } else {
+            if (isEmpty()) {
+                prim = L2.prim;
+                ult = L2.ult;
+                qtd = L2.qtd;
+                L2.prim = null;
+                L2.ult = null;
+                L2.qtd = 0;
+            } else {
+                ult.setProx(L2.prim);
+                L2.prim.setAnt(ult);
+                L2.ult.setProx(prim);
+                prim.setAnt(L2.ult);
+                ult = L2.ult;
+                qtd += L2.qtd;
+                L2.prim = null;
+                L2.ult = null;
+                L2.qtd = 0;
+            }
+            System.out.println("Lista concatenada sucesso!");
+        }
+    }
+
+    public LDECircular dividir() {
+        LDECircular L2 = new LDECircular();
+        LDENode<T> aux;
+        int cont;
+        if (isEmpty()) {
+            System.err.println("Erro, lista vazia!!");
+            return L2;
+        } else if (qtd == 1) {
+            System.err.println("Erro, para dividir a lista, deve haver mais de um valor nela.");
+            return L2;
+        } else {
+            qtd = (qtd / 2) + (qtd % 2);
+            aux = prim;
+            for (int i = 0; i != qtd; i++) {
+                aux = aux.getProx();
+            }
+            L2.prim = aux;
+            L2.ult = ult;
+            ult = aux.getAnt();
+            prim.setAnt(ult);
+            ult.setProx(prim);
+            L2.prim.setAnt(L2.ult);
+            L2.ult.setProx(L2.prim);
+            do {
+                L2.qtd++;
+                aux = aux.getProx();
+            } while (aux != L2.prim);
+        }
+        System.out.println("Lista dividida com sucesso!");
+        return L2;
+    }
 }
