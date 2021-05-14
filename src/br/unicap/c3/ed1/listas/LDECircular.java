@@ -139,7 +139,7 @@ public class LDECircular<T extends Comparable<T>> {
             System.err.println("Erro, para dividir a lista, deve haver mais de um valor nela.");
             return L2;
         } else {
-            qtd = (qtd / 2) + (qtd % 2);
+            cont = (qtd / 2) + (qtd % 2);
             aux = prim;
             for (int i = 0; i != qtd; i++) {
                 aux = aux.getProx();
@@ -151,10 +151,8 @@ public class LDECircular<T extends Comparable<T>> {
             ult.setProx(prim);
             L2.prim.setAnt(L2.ult);
             L2.ult.setProx(L2.prim);
-            do {
-                L2.qtd++;
-                aux = aux.getProx();
-            } while (aux != L2.prim);
+            L2.qtd = qtd - cont;
+            qtd = cont;
         }
         System.out.println("Lista dividida com sucesso!");
         return L2;
